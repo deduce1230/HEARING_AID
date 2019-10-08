@@ -9,6 +9,22 @@
 </head>
 
   <body>
+
+    <script type="text/javascript">
+      const recognition = new webkitSpeechRecognition();
+      const textarea    = document.querySelector('textarea');
+      const button      = document.querySelector('button');
+
+      button.addEventListener('click', function () {
+       recognition.start();
+      });
+   
+      recognition.onresult = function (e) {
+        let result = e.results[0][0].transcript;
+        textarea.value = result;
+      };
+    </script>
+
     <h1 class="text-center h1">Web Speech API テスト４</h1>
     <div id="content">
 <!--

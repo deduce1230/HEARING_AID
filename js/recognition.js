@@ -36,16 +36,3 @@
         button.innerHTML = "Click to Stop";
       }
     }
-
-const recognition = new webkitSpeechRecognition();
-const textarea    = document.querySelector('textarea');
-const button      = document.querySelector('button');
-
-button.addEventListener('click', function () {
-  recognition.start();
-});
-
-recognition.onresult = function (e) {
-  let result = e.results[0][0].transcript;
-  textarea.value = result;
-};

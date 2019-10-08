@@ -11,8 +11,13 @@
   <body>
     <h1 class="text-center h1">Web Speech API テスト</h1>
     <div id="content">
+<!--
       <input type="textarea" id="q" name="q" size=60>
       <input type="button" value="Click to Speak" onclick="recognition.start()">
+-->
+      <textarea id="textarea" rows=10 cols=80></textarea>
+      <button id="button" onclick="toggleStartStop()"></button>
+
     </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>

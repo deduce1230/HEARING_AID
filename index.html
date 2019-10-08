@@ -16,10 +16,6 @@ $(function($){
 	$('html').smoothscroll({easing : 'swing', speed : 1000, margintop : 30, headerfix : $('nav')});
 	$('.totop').scrollshow({position : 500});
 });
-<!--[if lt IE 9]>
-	<script src="js/html5shiv.js"></script>
-	<script src="js/css3-mediaqueries.js"></script>
-<![endif]-->
 </script>
 </head>
 <body>
@@ -38,8 +34,11 @@ $(function($){
 </nav>
 
 <div id="contents">
-	<h6 id="sample">ボタンを押しておしゃべりしてください</h2>
-      <input type="checkbox" class="toggle_button" data-off-label="開始" data-on-label="終了">
+	<h6 id="sample">ボタンを押しておしゃべりしてください
+      <p>
+      <input type="checkbox" class="toggle_button" name="mic" data-off-label="開始" data-on-label="終了">
+      </p>
+    </h6>
       <textarea class="form-control" rows="5" readonly></textarea>
          
 </div><!-- /.contents -->
@@ -54,6 +53,7 @@ $(function($){
       const textarea    = document.querySelector('textarea');
       const button      = document.querySelector("input[type='checkbox']");
       var status;
+      var mic_btn = document.getElementsByName("mic");
 
       button.addEventListener('click', function () {
        if (status > 0 ) {
@@ -68,6 +68,10 @@ $(function($){
       recognition.onresult = function (e) {
         let result = e.results[0][0].transcript;
         textarea.value = result;
+        status = 0;
+
+        alert(mic_btn.item(0).checked);
+        mic_btn.item(0).checked = false; 
       };
 </script>
 

@@ -4,6 +4,7 @@
 //    q.value = event.results[0][0].transcript;
 //  }
 //}
+    alert("HI!");
 
     var recognizing;
     var recognition = new SpeechRecognition();

@@ -1,44 +1,75 @@
 <!DOCTYPE html>
-<html lang='ja'>
-  <head>
-    <meta charset="UTF-8">
-    <title>WebSpeechAPIテスト</title>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>かんたん筆談</title>
+<meta name="viewport" content="width=device-width">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.smoothscroll.js"></script>
+<script type="text/javascript" src="js/jquery.scrollshow.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<script>
+$(function($){
+	$('html').smoothscroll({easing : 'swing', speed : 1000, margintop : 30, headerfix : $('nav')});
+	$('.totop').scrollshow({position : 500});
+});
+<!--[if lt IE 9]>
+	<script src="js/html5shiv.js"></script>
+	<script src="js/css3-mediaqueries.js"></script>
+<![endif]-->
+</script>
 </head>
+<body>
 
-  <body>
 
+<header>
+<h1>かんたん筆談</h1>
+</header>
 
-    <h3 class="text-center h1">Web Speech API テスト5</h3>
-    <div id="content">
+<nav>
+<ul>
+	<li><a href="index.html">メイン画面</a></li>
+	<li><a href="index.html">使い方</a></li>
+	<li><a href="index.html">メール</a></li>
+</ul>
+</nav>
 
-      <textarea class="form-control" rows="3" readonly></textarea>
-      <button type="button" class="btn btn-primary">スタート</button>
-      
-    </div>
+<div id="contents">
+	<h6 id="sample">ボタンを押しておしゃべりしてください</h2>
+      <input type="checkbox" class="toggle_button" data-off-label="開始" data-on-label="終了">
+      <textarea class="form-control" rows="5" readonly></textarea>
+         
+</div><!-- /.contents -->
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+<footer>
+	<div><small>Copyright &#169; 2019 - 2028 N.Yamashita All Rights Reserved.</small></div><!-- /.copyright -->
+</footer>
 
 
       <script type="text/javascript">
       const recognition = new webkitSpeechRecognition();
       const textarea    = document.querySelector('textarea');
-      const button      = document.querySelector('button');
+      const button      = document.querySelector("input[type='checkbox']");
+      var status;
 
       button.addEventListener('click', function () {
-       alert("VOICE");
-       recognition.start();
+       if (status > 0 ) {
+           recognition.stop();
+           status = 0;
+       }else{
+           recognition.start();
+           status = 9;
+       }
       });
    
       recognition.onresult = function (e) {
         let result = e.results[0][0].transcript;
         textarea.value = result;
       };
-    </script>
-</body>
+</script>
 
+</body>
 </html>

@@ -44,7 +44,7 @@ $(function($){
 </div><!-- /.contents -->
 
 <footer>
-	<div><small>Copyright &#169; 2019 - 2028 N.Yamashita All Rights Reserved.</small></div><!-- /.copyright -->
+	<div><small>distributed by N.Yamashita  ver. 1.002</small></div><!-- /.copyright -->
 </footer>
 
 
@@ -54,11 +54,11 @@ $(function($){
       const button      = document.querySelector("input[type='checkbox']");
       const mic_btn     = document.getElementsByName("mic");
       var status;
+      var timer_id;
 
 
       button.addEventListener('click', function () {
-       sleep(1000);
-       setTimeout("mic_btn.item(0).checked = false", 8000);
+       timer_id = setTimeout("btn_off()", 10000);
 
        if (status > 0 ) {
            recognition.stop();
@@ -68,13 +68,17 @@ $(function($){
            status = 9;
        }
       });
-   
+
+      function btn_off(){
+        clearTimeout(timer_id);
+        mic_btn.item(0).checked = false;
+        status = 0;
+      }
+
       recognition.onresult = function (e) {
         let result = e.results[0][0].transcript;
         textarea.value = result;
-        status = 0;
-        alert(mic_btn.item(0).checked);
-        mic_btn.item(0).checked = false; 
+        btn_off();
       };
 </script>
 

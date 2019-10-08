@@ -52,10 +52,14 @@ $(function($){
       const recognition = new webkitSpeechRecognition();
       const textarea    = document.querySelector('textarea');
       const button      = document.querySelector("input[type='checkbox']");
+      const mic_btn     = document.getElementsByName("mic");
       var status;
-      var mic_btn = document.getElementsByName("mic");
+
 
       button.addEventListener('click', function () {
+       sleep(1000);
+       setTimeout("mic_btn.item(0).checked = false", 8000);
+
        if (status > 0 ) {
            recognition.stop();
            status = 0;
@@ -69,7 +73,6 @@ $(function($){
         let result = e.results[0][0].transcript;
         textarea.value = result;
         status = 0;
-
         alert(mic_btn.item(0).checked);
         mic_btn.item(0).checked = false; 
       };

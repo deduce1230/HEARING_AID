@@ -58,7 +58,8 @@ $(function($){
 
 
       button.addEventListener('click', function () {
-       timer_id = setTimeout("btn_off()", 10000);
+      clearTimeout(timer_id);
+      timer_id = setTimeout("btn_off()", 10000);
 
        if (status > 0 ) {
            recognition.stop();

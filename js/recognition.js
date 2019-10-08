@@ -26,6 +26,7 @@
     }
 
     function toggleStartStop() {
+      aletr("start");
       if (recognizing) {
         recognition.stop();
         reset();
